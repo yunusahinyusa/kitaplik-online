@@ -1,6 +1,12 @@
 package com.kitaplik.library.service.dto;
 
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class AddBookRequest {
-    Long id;
+    String id;
     String isbn;
 }

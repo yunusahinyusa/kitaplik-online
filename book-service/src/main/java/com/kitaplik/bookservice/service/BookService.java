@@ -7,7 +7,6 @@ import com.kitaplik.bookservice.exception.BookNotFoundException;
 import com.kitaplik.bookservice.model.Book;
 import com.kitaplik.bookservice.repository.BookRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,15 +35,16 @@ public class BookService {
                 .orElseThrow(() -> new BookNotFoundException("Book could not found by isbn: " + isbn));
     }
 
-    public BookDto findBookDetailsById(Long id) {
+    public BookDto findBookDetailsById(String id) {
         return bookRepository.findById(id)
-                .map(book -> new BookDto(book.getTitle(), book.getBookYear(), book.getAuthor(), book.getPressName()))
+                .map(book -> new BookDto(book.getId(),book.getTitle(), book.getBookYear(), book.getAuthor(), book.getPressName(), book.getIsbn()))
                 .orElseThrow(() -> new BookNotFoundException("Book could not found by id" + id));
     }
 
     public void saveBook(BookDto bookDto){
         UUID uuid = UUID.randomUUID();
-        Book book1 = new Book(bookDto.getTitle(),bookDto.getBookYear(),bookDto.getAuthor(),bookDto.getPressName(),uuid.toString());
+        UUID uuid2 = UUID.randomUUID();
+        Book book1 = new Book(bookDto.getTitle(),bookDto.getBookYear(),bookDto.getAuthor(),bookDto.getPressName(),uuid2.toString());
         bookRepository.save(book1);
     }
 

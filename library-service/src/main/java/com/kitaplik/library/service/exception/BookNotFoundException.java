@@ -1,8 +1,26 @@
 package com.kitaplik.library.service.exception;
 
-public class BookNotFoundException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    public BookNotFoundException(String s){
-        super(s);
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class BookNotFoundException extends RuntimeException {
+
+    private ExceptionMessage exceptionMessage;
+    public BookNotFoundException(String message) {
+        super(message);
+    }
+
+    public BookNotFoundException(ExceptionMessage message) {
+        this.exceptionMessage = message;
+    }
+
+    public BookNotFoundException(String message, ExceptionMessage exceptionMessage) {
+        super(message);
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    public ExceptionMessage getExceptionMessage() {
+        return exceptionMessage;
     }
 }

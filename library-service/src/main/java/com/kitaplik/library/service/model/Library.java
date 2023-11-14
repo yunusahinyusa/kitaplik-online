@@ -1,11 +1,13 @@
 package com.kitaplik.library.service.model;
 
 
+import com.kitaplik.library.service.dto.BookDto;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
@@ -17,9 +19,9 @@ import java.util.List;
 @Table(name = "library")
 public class Library {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @ElementCollection
     private List<String> userBook;

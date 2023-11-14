@@ -39,12 +39,16 @@ public class BookController {
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<BookIdDto> getBookByIsbn(@PathVariable @NotEmpty String isbn){
         return ResponseEntity.ok(bookService.findByIsbn(isbn));
-
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<BookDto> getBookById(@PathVariable @NotEmpty Long id){
+    public ResponseEntity<BookDto> getBookById(@PathVariable @NotEmpty String id){
         return ResponseEntity.ok(bookService.findBookDetailsById(id));
+    }
+
+    @GetMapping("/booksave/{isbn}")
+    public BookIdDto getBookByIsbnNumber(@PathVariable String isbn){
+        return bookService.findByIsbn(isbn);
     }
 
 

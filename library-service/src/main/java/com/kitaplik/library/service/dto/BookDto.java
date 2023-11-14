@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BookDto {
+    private String id;
     private String title;
-    private Integer year;
+    private Integer bookYear;
     private String author;
     private String pressName;
-//    private String isbn;
+    private String isbn;
 
 }

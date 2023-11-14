@@ -11,10 +11,12 @@ public class BookConverter {
 
     public BookDto convertToDto(Book book){
         return new BookDto(
+                book.getId(),
                 book.getTitle(),
                 book.getBookYear(),
                 book.getAuthor(),
-                book.getPressName()
+                book.getPressName(),
+                book.getIsbn()
         );
     }
 
